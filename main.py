@@ -51,9 +51,6 @@ async def search_chel(message: types.Message):
     for key in dict:
         answer_message += key + ': '+ dict[key] + '\n'
     await message.answer(answer_message)
-    search = requests.get('https://source.unsplash.com/featured/?cat')
-    photo = io.BytesIO(search.content)
-    await bot.send_photo(message.chat.id, photo)
 
 if __name__ == '__main__':
    executor.start_polling(dp, skip_updates=True)  #метод start_polling опрашивает сервер, проверяя на нём обновления. Если они есть, то они приходят в Telegram
