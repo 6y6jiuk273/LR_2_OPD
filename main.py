@@ -30,7 +30,7 @@ def into_dict(num, colums):
 
 @dp.message_handler(commands=['start'])
 async def hello_message(message: types.Message):
-    await message.answer('Вас приветствует чат-бот Школы.\nВы можете посмотреть текущую успеваемость вашего ребёнка.')
+    await message.answer('Вас приветствует чат-бот родителей в классе.\nВы можете посмотреть текущую успеваемость вашего ребёнка.')
     await message.answer('Введите класс ребёнка в формате:\n /class № класса')
 
 @dp.message_handler(commands=['class'])
