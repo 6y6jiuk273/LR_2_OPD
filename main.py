@@ -26,7 +26,8 @@ def into_dict(num, colums):
     for item in colums:
         for info in table[item][num]:
             dict[item] = info # Заполнение словаря значениями из таблицы
-    return dict
+    return dict #возвращает словарь, содержащий информацию о ребенке
+
 
 @dp.message_handler(commands=['start'])
 async def hello_message(message: types.Message):
