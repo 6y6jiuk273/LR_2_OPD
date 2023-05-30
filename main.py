@@ -9,23 +9,23 @@ TOKEN = "6042534217:AAHYkViiDPlsQty3lTRrunT2rVc32IhV4Ak"
 bot = Bot(token=TOKEN)  #экземпляр класса Bot. В качестве аргумента передается токен
 dp = Dispatcher(bot)  #эземпляр класса класса Dispatcher (dp), который в качестве аргумента получит bot, принимает все апдейты и обрабатывает их
 
-classes = {'1A' : '1DIbZMRdqKYi_WalPl5T9kESXmP0Wh2ZpAnuHdBe35-Y', '1B' : '1aaAovvR--ZuCIbDJ_MSYvBxiJBbeujEhoEnVYmqLJCo'}
+classes = {'1A' : '1DIbZMRdqKYi_WalPl5T9kESXmP0Wh2ZpAnuHdBe35-Y', '1B' : '1aaAovvR--ZuCIbDJ_MSYvBxiJBbeujEhoEnVYmqLJCo'}  #Создается словарь classes, где ключами являются классы, а значениями - идентификаторы таблиц 
 
 def work_with_file(cllas):
-    SHEET_ID = classes[cllas]
-    SHEET_NAME = '1'
-    url = f'https://docs.google.com/spreadsheets/d/{SHEET_ID}/gviz/tq?tqx=out:csv&sheet={SHEET_NAME}'
+    SHEET_ID = classes[cllas] #Получает идентификатор таблицы
+    SHEET_NAME = '1'  #Получает имя листа
+    url = f'https://docs.google.com/spreadsheets/d/{SHEET_ID}/gviz/tq?tqx=out:csv&sheet={SHEET_NAME}'   #Формирует URL-адрес
     return url
 
 def poisk_num_str(chel):
-    num = table.index[table['Код'] == chel].tolist()
+    num = table.index[table['Код'] == chel].tolist() # Поиск номера строки по заданному коду
     return num
 
 def into_dict(num, colums):
     dict = {}
     for item in colums:
         for info in table[item][num]:
-            dict[item] = info
+            dict[item] = info # Заполнение словаря значениями из таблицы
     return dict
 
 @dp.message_handler(commands=['start'])
@@ -49,7 +49,7 @@ async def search_chel(message: types.Message):
     dict = into_dict(num, colum)
     answer_message = ""
     for key in dict:
-        answer_message += key + ': '+ dict[key] + '\n'
+        answer_message += key + ': '+ dict[key] + '\n' # Формирование ответного сообщения с информацией о ребёнке
     await message.answer(answer_message)
 
 if __name__ == '__main__':
